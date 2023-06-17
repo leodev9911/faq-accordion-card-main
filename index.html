@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+  
+  <title>Frontend Mentor | FAQ Accordion Card</title>
+  <style>
+    :root {
+      /* Text */
+      --very-dark-desaturated-blue: hsl(238, 29%, 16%);
+      --soft-red: hsl(14, 88%, 65%);
+
+      /* Gradient */
+      /* Background gradient: */
+
+      --soft-violet: hsl(273, 75%, 66%);
+      --soft-blue: hsl(240, 73%, 65%);
+
+      /* Neutral */
+      /* Text */
+
+      --very-dark-grayish-blue: hsl(237, 12%, 33%);
+      --dark-grayish-blue: hsl(240, 6%, 50%);
+
+      /* Dividers */
+
+      --light-grayish-blue: hsl(240, 5%, 91%);
+    }
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    html {
+      font-size: 62.5%;
+      font-family: 'Kumbh Sans', sans-serif;
+    }
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100vh;
+      background-image: linear-gradient(var(--soft-violet), var(--soft-blue));
+    }
+    .faq-sections {
+      position: relative;
+      top: 28px;
+      width: 330px;
+      height: 550px;
+      padding-top: 130px;
+      background-color: var(--light-grayish-blue);
+      border-radius: 26px;
+      box-shadow: 5px 7px 15px -5px rgba(0,0,0,0.75);
+    }
+    .faq-sections .women-image {
+      position: absolute;
+      top: -100px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 220px;
+      z-index: 10;
+    }
+    .faq-sections .image-shadow {
+      position: absolute;
+      top: 0px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 220px;
+    }
+    h1 {
+      font-size: 3.2rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .text-div {
+      width: 100%;
+      padding: 0px 28px;
+      max-height: 320px;
+      overflow: auto;
+    } 
+    .text-div::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 10px;
+    }
+    .text-div::-webkit-scrollbar-thumb {
+      background-color: #797979;
+      border-radius: 20px;
+      border: 2px solid #f1f2f3;
+      width: 10px;
+    }
+    .text-div .faq__box {
+      display: grid;
+      grid-template-columns: 2fr auto;
+      grid-template-rows: auto auto;
+      align-items: center;
+      width: 100%;
+      height: auto;
+      padding: 14px 0px;
+      border-bottom: 1px solid hsl(240, 6%, 50%);
+    }
+    .text-div .faq__box label {
+      display: contents;
+      width: 100%;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--very-dark-desaturated-blue);
+      cursor: pointer;
+    }
+    .text-div .faq__box-p {
+      max-height: 0px;
+      margin-top: 10px;
+      overflow: hidden;
+      color: var(--dark-grayish-blue);
+      font-size: 1.2rem;
+      transition: max-height 0.6s ease-in-out;
+    }  
+    .text-div .faq__box label:hover {
+      color: var(--soft-red);
+    }
+
+    input[type="checkbox"]:checked ~ label{
+      font-weight: 700;
+      color: black;
+    }
+
+    input[type="checkbox"]:checked ~ .faq__box-p {
+      max-height: 100px;
+    }
+    .text-div .faq__box span {
+      display: inline-block;
+      cursor: pointer;
+      width: 8px;
+      height: 8px;
+      background-image: url(./images/icon-arrow-down.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      transition: 0.5s ease-in-out;
+    }
+    input[type="checkbox"]:checked ~ label span {
+      transform: rotate(180deg);
+    }
+    input {
+      display: none;
+    }
+    @media(min-width: 1080px) {
+      .faq-sections {
+        display: flex;
+        flex-direction: row;
+        width: 920px;
+        padding-top: 0px;
+      }
+      .image__sections {
+        width: 50%;
+      }
+      h1 {    
+        text-align: start;        
+      }
+      .faq-sections .image__section {
+        position: relative;
+        width: 50%;
+        height: 100%;
+      }
+      .faq-sections .women-image {
+        display: none;
+      }
+      .image-shadow {
+        display: none;
+      }
+      .faq-sections .women-image-desktop {
+        display: inline-block;
+        position: absolute;
+        left: -76px;
+        top: 68px;
+        width: 476px;
+        height: 362px;
+        z-index: 10;
+        background-image: url(./images/illustration-woman-online-desktop.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .box-desktop__img {
+        display: inline-block;
+        position: absolute;
+        left: -88px;
+        top: 220px;
+        width: 148px;
+        height: 148px;
+        z-index: 20;
+        background-image: url(./images/illustration-box-desktop.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .bg-pattern-desktop {
+        display: inline-block;
+        position: absolute;
+        left: -76px;
+        top: 30px;
+        width: 476px;
+        height: 476px;
+        z-index: 0;
+        background-image: url(./images/bg-pattern-desktop.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .second-section__container {
+        padding-top: 66px;
+        width: 50%;
+        height: 100%;
+      }
+      .text-div {
+        padding: 0px 28px 0px 0px;
+        width: 380px;
+      } 
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="faq-sections">
+      <figure class="image__section">
+        <img src="./images/illustration-woman-online-mobile.svg" alt="" class="women-image">
+        <span class="women-image-desktop"></span>
+        <span class="box-desktop__img"></span>
+        <span class="bg-pattern-desktop"></span>
+        <img src="./images/bg-pattern-mobile.svg" alt="" class="image-shadow">
+      </figure>
+      <div class="second-section__container">
+        <h1>FAQ</h1>
+        <div class="text-div">
+          <div class="faq__box">
+            <input type="checkbox" id="hide-show__text1">
+            <label for="hide-show__text1" class="faq__box-title">
+              How many team members can I invite? 
+              <span class="arrow"></span></label>          
+            <p class="faq__box-p">You can invite the number that you want.</p>
+          </div>
+          <div class="faq__box">
+            <input type="checkbox" id="hide-show__text2">
+            <label for="hide-show__text2" class="faq__box-title">
+              What is the maximum file upload size?
+              <span class="arrow"></span>
+            </label>
+            <p class="faq__box-p">No more than 2GB. All files in you account must fit your allotted storage space.</p>
+          </div>
+          <div class="faq__box">
+            <input type="checkbox" id="hide-show__text3">
+            <label for="hide-show__text3" class="faq__box-title">
+              How do I reset my password
+              <span class="arrow"></span>
+            </label>
+            <p class="faq__box-p">You need to provide an email for recover your password</p>
+          </div>
+          <div class="faq__box">
+            <input type="checkbox" id="hide-show__text4">
+            <label for="hide-show__text4" class="faq__box-title">
+              Can I cancel my subscription?
+              <span class="arrow"></span>
+            </label>         
+            <p class="faq__box-p">Yes, you can do it whenever you want.</p>
+          </div>
+          <div class="faq__box">
+            <input type="checkbox" id="hide-show__text5">
+            <label for="hide-show__text5" class="faq__box-title">
+              Do you provide additional support
+              <span class="arrow"></span>
+            </label>          
+            <p class="faq__box-p">Yes we do.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
